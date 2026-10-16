@@ -51,7 +51,17 @@ function App() {
           {favroriler.length === 0 ? (
             <p>Favori ürün bulunmamaktadır.</p>
           ) : (
-            favroriler.map((urun) => <p key={urun.id}>{urun.name}</p>)
+            favroriler.map((urun) => (
+              <div className="favorite-item" key={urun.id}>
+                <img
+                  src={urun.image}
+                  alt={urun.name}
+                  className="favorite-item-image"
+                />
+
+                <p>{urun.name}</p>
+              </div>
+            ))
           )}
         </div>
 

@@ -132,3 +132,32 @@ body {
     padding: 10px;
   }
 }
+
+.favorite-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #d7dfcb;
+  color: #465442;
+}
+
+.favorite-item-image {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.favorit-item p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.dark-theme .favorit-item {
+  background-color: #293629;
+  color: #f1ebdd;
+}
