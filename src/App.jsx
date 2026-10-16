@@ -60,6 +60,7 @@ function App() {
                 />
 
                 <p>{urun.name}</p>
+                <p>{urun.price} TL</p>
               </div>
             ))
           )}
