@@ -28,19 +28,22 @@ function App() {
         setFavroriler={setFavroriler}
       />
 
-      <Cart
-        sepetim={sepet}
-        setSepetim={setSepet}
-        toplamFiyat={toplamFiyat}
-        toplamMiktar={toplamMiktar}
-      />
-
       <div className="alt-bolum">
         <div className="sepet-bilgileri">
           <h2>Sepet Bilgileri</h2>
-          <p>Sepet Miktarı: {sepet.length}</p>
-          <p>Sepet Toplam Miktarı: {toplamMiktar}</p>
-          <p>Sepet Toplam Fiyatı: {toplamFiyat} TL</p>
+
+          <Cart
+            sepetim={sepet}
+            setSepetim={setSepet}
+            toplamFiyat={toplamFiyat}
+            toplamMiktar={toplamMiktar}
+          />
+
+          <div className="sepet-toplamlari">
+            <p>Sepet Miktarı: {sepet.length}</p>
+            <p>Sepet Toplam Miktarı: {toplamMiktar}</p>
+            <p>Sepet Toplam Fiyatı: {toplamFiyat} TL</p>
+          </div>
         </div>
 
         <div className="favoriler">
