@@ -13,6 +13,7 @@ function CartItem({ urun, sepetim, setSepetim }) {
       <p className="cart-item-name">{urun.name}</p>
       <p className="cart-item-price">{urun.price} TL</p>
       <p className="cart-item-quantity">Adet: {urun.quantity}</p>
+      <img src={urun.image} alt={urun.name} className="cart-item-image" />
 
       <div className="cart-item-actions">
         <button
