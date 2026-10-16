@@ -1,11 +1,6 @@
-import { useState } from "react";
 import "./CartItem.css";
-function CartItem({ urun, sepetim, setSepetim }) {
-  const [silmeBildirimi, setSilmeBildirimi] = useState("");
-  const [urunAzaltma, setUrunAzaltma] = useState("");
-  const [urunArttırma, setUrunArttırma] = useState("");
-  const [stok_bildirimi, setStok_bildirimi] = useState("");
-
+import { toast } from "react-toastify";
+function CartItem({ urun, setSepetim }) {
   const toplam_fiyat = urun.price * urun.quantity;
 
   return (
@@ -19,7 +14,7 @@ function CartItem({ urun, sepetim, setSepetim }) {
         <button
           className="remove-cart-button"
           onClick={() => {
-            setSilmeBildirimi("Ürün sepetten çıkarıldı.");
+            toast.info("Ürün sepetten çıkartıldı", { autoClose: 2000 });
 
             setTimeout(() => {
               setSepetim((oncekiSepet) =>
@@ -35,21 +30,27 @@ function CartItem({ urun, sepetim, setSepetim }) {
           className="quantity-button"
           onClick={() => {
             if (urun.quantity === 1) {
-              setUrunAzaltma("Ürün sayısı azaltıldı.");
-              setTimeout(() => setUrunAzaltma(""), 2000);
+              toast.info("Ürün sayısı azaltılıyor ve sepetten çıkartılıyor", {
+                autoClose: 2000,
+              });
 
-              setSepetim(sepetim.filter((eleman) => eleman.id !== urun.id));
+              setTimeout(() => {
+                setSepetim((oncekiSepet) =>
+                  oncekiSepet.filter((eleman) => eleman.id !== urun.id),
+                );
+              }, 2000);
             } else {
-              setSepetim(
-                sepetim.map((eleman) =>
-                  eleman.id === urun.id
-                    ? { ...eleman, quantity: eleman.quantity - 1 }
-                    : eleman,
-                ),
-              );
+              toast.info("Ürün sayısı azaltılıyor", { autoClose: 1000 });
 
-              setUrunAzaltma("Ürün sayısı azaltıldı.");
-              setTimeout(() => setUrunAzaltma(""), 2000);
+              setTimeout(() => {
+                setSepetim((oncekiSepet) =>
+                  oncekiSepet.map((eleman) =>
+                    eleman.id === urun.id
+                      ? { ...eleman, quantity: eleman.quantity - 1 }
+                      : eleman,
+                  ),
+                );
+              }, 1000);
             }
           }}
         >
@@ -60,33 +61,26 @@ function CartItem({ urun, sepetim, setSepetim }) {
           className="quantity-button"
           onClick={() => {
             if (urun.quantity < urun.stock) {
-              setSepetim(
-                sepetim.map((eleman) =>
-                  eleman.id === urun.id
-                    ? { ...eleman, quantity: eleman.quantity + 1 }
-                    : eleman,
-                ),
-              );
-              setUrunArttırma("Ürün sayısı artırıldı.");
-              setTimeout(() => setUrunArttırma(""), 3000);
+              toast.info("Ürün sayısı arttırıldı", { autoClose: 1000 });
+              setTimeout(() => {
+                setSepetim((oncekiSepet) =>
+                  oncekiSepet.map((eleman) =>
+                    eleman.id === urun.id
+                      ? { ...eleman, quantity: eleman.quantity + 1 }
+                      : eleman,
+                  ),
+                );
+              }, 1000);
             } else {
-              setStok_bildirimi("Stokta yeterli ürün bulunmamaktadır");
-              setTimeout(() => setStok_bildirimi(""), 3000);
+              toast.error("Stokta yeterli ürün bulunmamaktadır", {
+                autoClose: 3000,
+              });
             }
           }}
         >
           +
         </button>
       </div>
-
-      {silmeBildirimi && (
-        <p className="cart-item-notification">{silmeBildirimi}</p>
-      )}
-      {urunAzaltma && <p className="cart-item-notification">{urunAzaltma}</p>}
-      {urunArttırma && <p className="cart-item-notification">{urunArttırma}</p>}
-      {stok_bildirimi && (
-        <p className="cart-item-notification">{stok_bildirimi}</p>
-      )}
 
       <p className="cart-item-total">Toplam: {toplam_fiyat} TL</p>
     </div>

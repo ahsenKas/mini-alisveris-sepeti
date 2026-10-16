@@ -2,6 +2,8 @@ import "./App.css";
 import { useState } from "react";
 import ProductList from "./Components/ProductList.jsx";
 import Cart from "./Components/Cart.jsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [sepet, setSepet] = useState([]);
@@ -21,6 +23,11 @@ function App() {
 
   return (
     <div className={`app ${tema === "light" ? "light-theme" : "dark-theme"}`}>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={true}
+      />
       <ProductList
         sepetim={sepet}
         setSepetim={setSepet}

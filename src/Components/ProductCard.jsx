@@ -1,5 +1,5 @@
-import { useState } from "react";
 import "./ProductCard.css";
+import { toast } from "react-toastify";
 function ProductCard({
   product,
   setSepetim,
@@ -7,9 +7,6 @@ function ProductCard({
   favroriler,
   setFavroriler,
 }) {
-  const [eklendiBildirimi, setEklendiBildirimi] = useState("");
-  const [stockBildirimi, setStockBildirimi] = useState("");
-
   return (
     <div className="product-card">
       <div className="product-card-image">
@@ -30,8 +27,7 @@ function ProductCard({
             const bulunanUrun = sepetim.find((urun) => urun.id === product.id);
 
             if (bulunanUrun && bulunanUrun.quantity >= bulunanUrun.stock) {
-              setStockBildirimi("Stokta yeterli ürün bulunmamaktadır");
-              setTimeout(() => setStockBildirimi(""), 3000);
+              toast.error("Stokta yeterli ürün bulunmamaktadır");
               return;
             }
 
@@ -47,8 +43,7 @@ function ProductCard({
               return [...eskiSepet, { ...product, quantity: 1 }];
             });
 
-            setEklendiBildirimi("Ürün sepete eklendi");
-            setTimeout(() => setEklendiBildirimi(""), 2000);
+            toast.success("Ürün sepete eklendi");
           }}
         >
           Sepete Ekle
@@ -68,11 +63,6 @@ function ProductCard({
         >
           {favroriler.some((urun) => urun.id === product.id) ? "❤️" : "🤍"}
         </button>
-      </div>
-
-      <div className="product-card-notifications">
-        <p className="stock-notification">{stockBildirimi}</p>
-        <p className="cart-notification">{eklendiBildirimi}</p>
       </div>
     </div>
   );
