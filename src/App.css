@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-width: 320px;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.light-theme {
+  background-color: #f5f1e8;
+  color: #465442;
+}
+
+.dark-theme {
+  background-color: #252d25;
+  color: #f1ebdd;
+}
+
+.alt-bolum {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.sepet-bilgileri {
+  width: 100%;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #e2e7d8;
+  color: #465442;
+}
+
+.dark-theme .sepet-bilgileri {
+  background-color: #354333;
+  color: #f1ebdd;
+}
+
+.sepet-bilgileri h2 {
+  margin-top: 0;
+}
+
+.sepet-bilgileri p:last-child {
+  margin-bottom: 0;
+}
+
+.favoriler {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #e2e7d8;
+  color: #465442;
+}
+
+.dark-theme .favoriler {
+  background-color: #354333;
+  color: #f1ebdd;
+}
+
+.favoriler h2 {
+  margin-top: 0;
+}
+
+.favoriler p {
+  margin-bottom: 0;
+}
+
+.tema-degistirme {
+  position: static;
+  align-self: flex-start;
+  margin: 0;
+}
+
+.tema-degistirme button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #465442;
+  color: #f5f1e8;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.dark-theme .tema-degistirme button {
+  background-color: #aab89b;
+  color: #252d25;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 10px;
+  }
+
+  .sepet-bilgileri,
+  .favoriler {
+    padding: 12px;
+  }
+}
